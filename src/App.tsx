@@ -1,11 +1,20 @@
 import './App.css'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
+// import Navbar from './components/Navbar'
+// import MovieCard from './components/MovieCard'
+import { Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+
 function App() {
 
   return (
-    <div>
+    <div className='h-screen w-screen bg-[#3b3b3b] overflow-hidden'>
+      {/* <Navbar />
       hello
-      <ConnectButton chainStatus="icon" showBalance={false} accountStatus="address"/>
+      <MovieCard /> */}
+    <Routes>
+      <Route path="/" element={<Home />}/>
+    </Routes>
+    
     </div>
   )
 }

@@ -8,7 +8,7 @@ import AdminHome from "./pages/AdminHome";
 
 function App() {
   return (
-    <div className="h-full w-full bg-[#3b3b3b]">
+    <div className="min-h-screen w-full bg-[#3b3b3b]">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/player" element={<Player />} />

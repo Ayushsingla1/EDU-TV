@@ -18,7 +18,7 @@ const MovieInfo: React.FC<MovieInfoProps> = ({
   posterUrl,
 }) => {
   return (
-    <div className="flex flex-col md:flex-row bg-gray-800 p-6 rounded-lg shadow-lg">
+    <div className="flex flex-col md:flex-row p-6 w-10/12 max-w-[1440px] rounded-lg shadow-lg">
       {/* Poster Image */}
       <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
         <img

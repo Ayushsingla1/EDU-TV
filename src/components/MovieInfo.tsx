@@ -24,7 +24,7 @@ const MovieInfo: React.FC<MovieInfoProps> = ({
         <img
           src={posterUrl}
           alt={`${title} poster`}
-          className="w-full h-auto max-w-xs border-2 border-green-500 rounded-lg"
+          className="w-full h-auto max-w-[240px] border-2 border-green-500 rounded-lg"
         />
       </div>
 

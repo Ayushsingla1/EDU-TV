@@ -5,9 +5,14 @@ import johnWickImg from '../assets/johnWick.jpg'
 import { video, videos } from "@/DummyData/videosData";
 import MovieCard from "@/components/MovieCard";
 
-const Player = () => {
+
+const TrailerPlayer = () => {
 
   // const connectedAccount = useAccount()
+
+  //write a funtion to fetch the video details
+
+  //also to fetch other videos available to rent
 
   const dummyVid = {
     name: "John Wick",
@@ -29,6 +34,7 @@ const Player = () => {
           <div className="flex pt-10 gap-y-6 flex-col absolute top-0 w-full justify-center items-center">
             <div className="flex gap-x-2 text-white justify-center items-center">
               <span className="font-hanalei text-4xl">{dummyVid.name}</span>
+              <span className="font-hanalei text-4xl text-[#1EFF00]">Trailer</span>
               <div className="border border-[#1EFF00] rounded-full px-3 py-1">
                 <span className="font-hanalei text-xl">Owner:</span>
                 <span className="font-hanalei text-xl">0x567A027B2f96bbf8D47c133e13A54862D565bcd6</span>
@@ -66,4 +72,4 @@ const Player = () => {
   );
 };
 
-export default Player;
+export default TrailerPlayer;

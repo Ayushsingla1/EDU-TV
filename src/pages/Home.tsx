@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import MovieCard from "../components/MovieCard";
 import image from "../assets/Group 1.png";
 import Footer from "@/components/Footer";
+import { video, videos } from "@/DummyData/videosData";
 
 const Home = () => {
   return (
@@ -34,12 +35,13 @@ const Home = () => {
               </button>
             </div>
             <div className="flex gap-5">
-              <MovieCard />
-              <MovieCard />
-              <MovieCard />
-              <MovieCard />
-              <MovieCard />
-              <MovieCard />
+            {
+                videos.slice(0,5).map((video:video | any, index)  => {
+                    return (
+                        <MovieCard key={index} video={video}/>
+                    )
+                })
+              }
             </div>
           </div>
         </div>

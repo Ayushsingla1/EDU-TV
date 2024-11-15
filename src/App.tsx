@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Payment from "./pages/Payment";
 import NotFound from "./pages/NotFound";
 import Player from "./pages/Player";
+import AdminHome from "./pages/AdminHome";
 
 function App() {
   return (
@@ -12,8 +13,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/player" element={<Player />} />
         <Route path="/payment" element={<Payment />} />
+        <Route path="/AdminHome" element={<AdminHome/>}/>
         <Route path="*" element={<NotFound />} />
-        
       </Routes>
     </div>
   );

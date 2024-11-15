@@ -13,11 +13,11 @@ function App() {
     <div className="min-h-screen w-full bg-[#3b3b3b]">
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/home" element={<Home/>}/>
+        <Route path="/home" element={<Home />} />
         <Route path="/player" element={<Player />} />
         <Route path="/trailerPlayer" element={<TrailerPlayer />} />
         <Route path="/payment" element={<Payment />} />
-        <Route path="/AdminHome" element={<AdminHome/>}/>
+        <Route path="/AdminHome" element={<AdminHome />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

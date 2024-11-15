@@ -29,7 +29,7 @@
   text-align: center;
 }
 
-.blackStroke{
+.blackStroke {
   -webkit-text-stroke-color: black;
   -webkit-text-stroke-width: 1px;
 }
@@ -37,7 +37,6 @@
 .image-container:hover img {
   opacity: 0.2;
 }
-
 
 /* Show the text when hovering over the image */
 .image-container:hover .hover-text {

@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
-    <div className=" ">
-      
+    <div className="p-3 h-12 text-white">
+      THIS IS A FOOTER
     </div>
   );
 };

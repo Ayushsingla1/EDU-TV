@@ -1,22 +1,22 @@
-import './App.css'
-// import Navbar from './components/Navbar'
-// import MovieCard from './components/MovieCard'
-import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Payment from "./pages/Payment";
+import NotFound from "./pages/NotFound";
+import Player from "./pages/Player";
 
 function App() {
-
   return (
-    <div className='h-screen w-screen bg-[#3b3b3b] overflow-hidden'>
-      {/* <Navbar />
-      hello
-      <MovieCard /> */}
-    <Routes>
-      <Route path="/" element={<Home />}/>
-    </Routes>
-    
+    <div className="h-full w-full bg-[#3b3b3b]">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/player" element={<Player />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="*" element={<NotFound />} />
+        
+      </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

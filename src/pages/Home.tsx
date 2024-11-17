@@ -8,15 +8,13 @@ import { useReadContract } from "wagmi";
 
 const LandingPage = () => {
 
-  const connectAccount = useAccount();
   console.log(ABI);
   console.log(contractAddress);
 
   const {data, isPending , error} : {data : any[] | undefined , isPending : any , error : any}  =  useReadContract({
     abi : ABI,
     address : contractAddress,
-    functionName : "getAllPoster",
-    account : connectAccount.address,
+    functionName : "getAllPosters",
     args : [],
   })
 

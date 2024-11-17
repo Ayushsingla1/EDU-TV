@@ -7,6 +7,7 @@ import Player from "./pages/Player";
 import AdminHome from "./pages/AdminHome";
 import TrailerPlayer from "./pages/TrailerPlayer";
 import LandingPage from "./pages/LandingPage";
+import MovieUpload from "./pages/MovieUpload";
 
 function App() {
   return (
@@ -16,8 +17,9 @@ function App() {
         <Route path="/home" element={<Home/>}/>
         <Route path="/player" element={<Player />} />
         <Route path="/trailerPlayer/:id" element={<TrailerPlayer />} />
-        <Route path="/payment" element={<Payment />} />
+        <Route path="/payment/:id" element={<Payment />} />
         <Route path="/AdminHome" element={<AdminHome/>}/>
+        <Route path = "/addmovie" element = {<MovieUpload/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

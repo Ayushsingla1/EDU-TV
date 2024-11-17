@@ -40,7 +40,7 @@ const Player = () => {
       {
         abi : ABI,
         address : contractAddress,
-        functionName : "getAllPoster",
+        functionName : "getAllPosters",
         args : [],
       }
     ]
@@ -66,7 +66,7 @@ const Player = () => {
                   <span className="font-hanalei text-xl">0x567A027B2f96bbf8D47c133e13A54862D565bcd6</span>
                 </div>
               </div>
-              <Video link={`https://maroon-fashionable-warbler-188.mypinata.cloud/ipfs/${data[0].result.ipfsHash}?pinataGatewayToken=gVQfpvbN3IXW52kARQuLO50y78ginsP31oSkPQT78K23fingxRmnt7u0tHk2lnFk`}/>
+              <Video link={`https://maroon-fashionable-warbler-188.mypinata.cloud/ipfs/${data[0].result.ipfsHash.replace("ipfs://","")}?pinataGatewayToken=gVQfpvbN3IXW52kARQuLO50y78ginsP31oSkPQT78K23fingxRmnt7u0tHk2lnFk`}/>
               <div className="w-full justify-center items-center flex bottom-[0] font-hanalei">
                 <MovieInfo
                   title={data[1].result.name}
@@ -74,7 +74,7 @@ const Player = () => {
                   amount={data[1].result.price.toString()}
                   imdbRating="8.8/10"
                   description={data[1].result.description}
-                  posterUrl={`https://maroon-fashionable-warbler-188.mypinata.cloud/ipfs/${data[1].result.ipfsHash}?pinataGatewayToken=gVQfpvbN3IXW52kARQuLO50y78ginsP31oSkPQT78K23fingxRmnt7u0tHk2lnFk`}
+                  posterUrl={`https://maroon-fashionable-warbler-188.mypinata.cloud/ipfs/${data[1].result.ipfsHash.replace("ipfs://","")}?pinataGatewayToken=gVQfpvbN3IXW52kARQuLO50y78ginsP31oSkPQT78K23fingxRmnt7u0tHk2lnFk`}
                 />
               </div>
             </div>

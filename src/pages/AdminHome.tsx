@@ -3,17 +3,27 @@ import MovieCard from "@/components/MovieCard";
 import Navbar from "@/components/Navbar";
 import image from "../assets/Group 1.png";
 import { useAccount, useReadContract } from "wagmi";
-import { video, videos } from "@/DummyData/videosData";
+import { video } from "@/DummyData/videosData";
 import { ABI , contractAddress } from "@/utils/contractDetails";
+import { useNavigate } from "react-router-dom";
+
+interface posterData {
+  movieId : number,
+  name : string;
+  description : string;
+  ipfsHash : string;
+  price : number;
+}
 
 const AdminHome = () => {
 
     const connectAccount = useAccount();
+    const navigate = useNavigate();
 
-    const {data , isPending} = useReadContract({
+    const {data , isPending} : {data : posterData[] | undefined , isPending : boolean | undefined} = useReadContract({
       abi : ABI,
       address : contractAddress,
-      functionName : "getAllPoster",
+      functionName : "getAllPosters",
       args : []
     })
 
@@ -35,7 +45,7 @@ const AdminHome = () => {
                   Upload a video?
               </p>
               <div className="flex justify-center gap-x-2">
-                  <button className="font-hanalei text-3xl bg-[#1EFF00] px-3 py-1 rounded">
+                  <button className="font-hanalei text-3xl bg-[#1EFF00] px-3 py-1 rounded" onClick={() => navigate('/addmovie')}>
                   Upload
                   </button>
               </div>
@@ -51,7 +61,7 @@ const AdminHome = () => {
             </div>
             <div className="flex w-full gap-5">
               {
-                data.slice(0,5).map((video:video | any, index)  => {
+                data?.slice(0,5).map((video:video | any, index : number)  => {
                     return (
                         <MovieCard key={index} video={video}/>
                     )

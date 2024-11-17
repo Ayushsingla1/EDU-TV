@@ -2,21 +2,18 @@ import Footer from "@/components/Footer";
 import MovieCard from "@/components/MovieCard";
 import Navbar from "@/components/Navbar";
 import image from "../assets/Group 1.png";
-import { useAccount, useReadContract } from "wagmi";
+import { useReadContract } from "wagmi";
 import {ABI , contractAddress} from "@/utils/contractDetails"
 
 const LandingPage = () => {
-    const connectAccount = useAccount();
     console.log(ABI);
     console.log(contractAddress);
 
     const {data, isPending , error} : {data : any[] | undefined , isPending : any , error : any}  =  useReadContract({
       abi : ABI,
       address : contractAddress,
-      functionName : "getAllPoster",
-      account : connectAccount.address,
+      functionName : "getAllPosters",
       args : [],
-
     })
 
     console.log(data);

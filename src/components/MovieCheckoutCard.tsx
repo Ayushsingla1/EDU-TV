@@ -9,6 +9,7 @@ type MovieCheckoutProps = {
   owner: string;
   description: string;
   buyers: number;
+  id : number
 };
 
 
@@ -18,6 +19,7 @@ const MovieCheckout: React.FC<MovieCheckoutProps> = ({
   owner,
   description,
   buyers,
+  id
 }) => {
   const { writeContract, isPending, data: hash } = useWriteContract();
   const { isSuccess, isError } = useWaitForTransactionReceipt({
@@ -30,7 +32,7 @@ const MovieCheckout: React.FC<MovieCheckoutProps> = ({
         abi: ABI,
         address: contractAddress,
         functionName: "purchaseMovie",
-        args: [0],
+        args: [id],
         value: 250n,
       });
     };
@@ -60,7 +62,7 @@ const MovieCheckout: React.FC<MovieCheckoutProps> = ({
         <p>
           <span className="text-white blackStroke text-3xl">DESCRIPTION:</span>
           <br />
-          <span className="blackStroke text-lg font-bold">{description}</span>
+          <span className="blackStroke text-lg font-bold">{description.trim().slice(0,300)}</span>
         </p>
 
         <p className="text-3xl">

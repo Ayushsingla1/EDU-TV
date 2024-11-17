@@ -1,5 +1,5 @@
-export const contractAddress = "0x1678c81b63D43F2E85Bb62C40816Cc8c8e538B85"
-export const ABI = [
+export const contractAddress = "0x26737d9A1aBA6511F0Cff8848d17D0dA8fAC19ab"
+export const ABI =[
 	{
 		"inputs": [
 			{
@@ -272,13 +272,38 @@ export const ABI = [
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": false,
+				"indexed": true,
 				"internalType": "uint256",
 				"name": "movieId",
 				"type": "uint256"
 			},
 			{
 				"indexed": false,
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "price",
+				"type": "uint256"
+			}
+		],
+		"name": "MovieAdded",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "movieId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
 				"internalType": "address",
 				"name": "buyer",
 				"type": "address"
@@ -405,6 +430,25 @@ export const ABI = [
 		"anonymous": false,
 		"inputs": [
 			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "uri",
+				"type": "string"
+			}
+		],
+		"name": "TokenURI",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
 				"indexed": true,
 				"internalType": "address",
 				"name": "from",
@@ -502,27 +546,8 @@ export const ABI = [
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "userAddress",
-				"type": "address"
-			}
-		],
-		"name": "checkRole",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [],
-		"name": "getAllPoster",
+		"name": "getAllPosters",
 		"outputs": [
 			{
 				"components": [
@@ -562,7 +587,7 @@ export const ABI = [
 	},
 	{
 		"inputs": [],
-		"name": "getAllTrailer",
+		"name": "getAllTrailers",
 		"outputs": [
 			{
 				"components": [
@@ -668,25 +693,6 @@ export const ABI = [
 				"type": "uint256"
 			}
 		],
-		"name": "getMovieIPFS",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "movieIndex",
-				"type": "uint256"
-			}
-		],
 		"name": "getPoster",
 		"outputs": [
 			{
@@ -752,7 +758,7 @@ export const ABI = [
 				"type": "address"
 			}
 		],
-		"name": "getUserPurchasedMovies",
+		"name": "getUserMovies",
 		"outputs": [
 			{
 				"internalType": "uint256[]",
@@ -1009,69 +1015,6 @@ export const ABI = [
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "movieIndex",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "user",
-				"type": "address"
-			}
-		],
-		"name": "ownsMovieNFT",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "posters",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "movieId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "description",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "ipfsHash",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "price",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "bytes4",
 				"name": "interfaceId",
 				"type": "bytes4"
@@ -1114,40 +1057,6 @@ export const ABI = [
 			{
 				"internalType": "string",
 				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "trailers",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "movieId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "description",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "ipfsHash",
 				"type": "string"
 			}
 		],

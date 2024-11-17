@@ -15,7 +15,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<Home/>}/>
         <Route path="/player" element={<Player />} />
-        <Route path="/trailerPlayer" element={<TrailerPlayer />} />
+        <Route path="/trailerPlayer/:id" element={<TrailerPlayer />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/AdminHome" element={<AdminHome/>}/>
         <Route path="*" element={<NotFound />} />

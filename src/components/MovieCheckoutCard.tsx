@@ -1,4 +1,7 @@
 import React from "react";
+import { contractAddress , ABI } from "@/utils/contractDetails";
+import { useWriteContract } from "wagmi";
+import { useWaitForTransactionReceipt } from "wagmi";
 
 type MovieCheckoutProps = {
   title: string;
@@ -8,6 +11,7 @@ type MovieCheckoutProps = {
   buyers: number;
 };
 
+
 const MovieCheckout: React.FC<MovieCheckoutProps> = ({
   title,
   gas,
@@ -15,6 +19,32 @@ const MovieCheckout: React.FC<MovieCheckoutProps> = ({
   description,
   buyers,
 }) => {
+  const { writeContract, isPending, data: hash } = useWriteContract();
+  const { isSuccess, isError } = useWaitForTransactionReceipt({
+    hash
+  });
+  
+  const handleBuy = async (e : any) => {
+      e.preventDefault();
+      await writeContract({
+        abi: ABI,
+        address: contractAddress,
+        functionName: "purchaseMovie",
+        args: [0],
+        value: 250n,
+      });
+    };
+
+
+  if(isSuccess){
+    return <div>Payment Successfull siuuuu</div>
+  }
+  if(isError) {
+    return <div>ERROR...</div>
+  }
+  if(isPending){
+    return <div>payment in progress ....</div>
+  }
   return (
     <div className="max-w-md p-6 font-hanalei rounded-xl bg-[#C2C2C2] hover:bg-[#d6d6d6] hover:scale-105 transition-all ease-in-out text-white space-y-4">
       <h1 className="text-4xl blackStroke">MOVIE CHECKOUT</h1>
@@ -39,7 +69,7 @@ const MovieCheckout: React.FC<MovieCheckoutProps> = ({
         </p>
       </div>
 
-      <button className="bg-green-600 w-full blackStroke  hover:bg-green-500 px-4 py-2 rounded-full text-white text-3xl font-bold">
+      <button className="bg-green-600 w-full blackStroke  hover:bg-green-500 px-4 py-2 rounded-full text-white text-3xl font-bold" onClick={handleBuy}>
         BUY NOW
       </button>
     </div>

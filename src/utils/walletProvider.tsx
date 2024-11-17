@@ -5,7 +5,7 @@ import {
 } from '@rainbow-me/rainbowkit';
 import { WagmiProvider } from 'wagmi';
 import {
-  mainnet,
+  sepolia,
   base,
 } from 'wagmi/chains';
 import {
@@ -41,7 +41,7 @@ import React from 'react';
 const config = getDefaultConfig({
   appName: 'NeoX',
   projectId: '121',
-  chains: [mainnet,base],
+  chains: [sepolia,base],
   ssr: false,
 });
 

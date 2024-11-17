@@ -3,12 +3,33 @@ import MovieCard from "@/components/MovieCard";
 import Navbar from "@/components/Navbar";
 import image from "../assets/Group 1.png";
 import { useAccount } from "wagmi";
-import { video, videos } from "@/DummyData/videosData";
+import { ABI , contractAddress } from "@/utils/contractDetails";
+import { useReadContract } from "wagmi";
 
 const LandingPage = () => {
 
-    const connectAccount = useAccount();
+  const connectAccount = useAccount();
+  console.log(ABI);
+  console.log(contractAddress);
 
+  const {data, isPending , error} : {data : any[] | undefined , isPending : any , error : any}  =  useReadContract({
+    abi : ABI,
+    address : contractAddress,
+    functionName : "getAllPoster",
+    account : connectAccount.address,
+    args : [],
+  })
+
+  console.log(data);
+
+  if(isPending){
+    return <div>loading...</div>
+  }
+  if(error){
+    return <div>{error}...</div>
+  }
+
+  else{
     return ( 
     <div className="w-full flex flex-col">
       <Navbar />
@@ -44,7 +65,7 @@ const LandingPage = () => {
           </div>
           <div className="flex w-full gap-5">
             {
-              videos.slice(0,5).map((video:video | any, index)  => {
+              data?.slice(0,5).map((video : any , index)  => {
                   return (
                       <MovieCard key={index} video={video}/>
                   )
@@ -56,6 +77,7 @@ const LandingPage = () => {
       <Footer />
     </div>
      );
+}
 }
  
 export default LandingPage;

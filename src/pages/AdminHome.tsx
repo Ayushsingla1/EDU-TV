@@ -63,7 +63,7 @@ const AdminHome = () => {
               {
                 data?.slice(0,5).map((video:video | any, index : number)  => {
                     return (
-                        <MovieCard key={index} video={video}/>
+                        <MovieCard key={index} noOfVideos={data.length} video={video}/>
                     )
                 })
               }

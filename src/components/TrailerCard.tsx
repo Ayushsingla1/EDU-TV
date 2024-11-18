@@ -1,15 +1,17 @@
 import { useNavigate } from "react-router-dom";
-const TrailerCard = ({video} : any) => {
+const TrailerCard = ({video, noOfVideos} : any) => {
   console.log(video)
+  console.log(noOfVideos)
 
   const navigate = useNavigate();
 
   console.log(video)
   return (
-    <div className="hover:scale-105 image-container transition-all ease-in-out w-full">
+    <div className="hover:scale-105 image-container transition-all ease-in-out">
       <img
+        // src={video.thumbnail}
         src={`https://maroon-fashionable-warbler-188.mypinata.cloud/ipfs/${video.ipfsHash.replace("ipfs://","")}?pinataGatewayToken=gVQfpvbN3IXW52kARQuLO50y78ginsP31oSkPQT78K23fingxRmnt7u0tHk2lnFk`}
-        className='w-full transition-all ease-in-out h-[321px] object-cover rounded-lg'
+        className={` transition-all ease-in-out ${noOfVideos < 5 ? "w-[240px] h-[320px]" : "w-[240px] h-[321px]"} object-contain rounded-lg`}
         alt=""
       />
       <div className="hover-text w-full">

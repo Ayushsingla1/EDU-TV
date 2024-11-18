@@ -1,7 +1,4 @@
-import Footer from "@/components/Footer";
-import MovieCard from "@/components/MovieCard";
 import Navbar from "@/components/Navbar";
-import image from "../assets/Group 1.png";
 import { useReadContract } from "wagmi";
 import {ABI , contractAddress} from "@/utils/contractDetails"
 import TrailerCard from "@/components/TrailerCard";
@@ -30,8 +27,8 @@ const TrailersPage = () => {
       <div className="w-full flex flex-col">
         <Navbar />
         <div className="flex flex-col relative gap-y-10 w-full justify-center items-center text-center">
-          <div className="min-h-[60vh] w-full bg-[#292929]"></div>
-          <div className="flex flex-col w-full gap-y-10 justify-center items-center text-center absolute top-[150px]">
+          <div className="h-[60vh] w-full bg-[#292929]"></div>
+          <div className="flex flex-col w-full gap-y-10 pb-8 justify-center items-center text-center  absolute top-[150px]">
             <div className="w-full flex justify-center items-center">
               {/* <img className="w-full max-w-[1840px] h-[59vh]" src={image} alt="" /> */}
               <div className="flex-col flex gap-y-1 ">
@@ -58,11 +55,11 @@ const TrailersPage = () => {
               <div className="flex justify-between text-xl">
                 <h2 className="font-hanalei text-3xl text-[#1EFF00]">Watch Trailers</h2>
               </div>
-              <div className="flex w-full gap-5">
+              <div className="flex w-full flex-wrap gap-5">
                 {
-                    data?.slice(0,5).map((video : any , index : any)  => {
+                    data?.map((video : any , index : any)  => {
                       return (
-                          <TrailerCard key={index} video={video}/>
+                          <TrailerCard key={index} noOfVideos={data.length} video={video}/>
                       )
                   })
                 }

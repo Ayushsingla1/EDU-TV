@@ -57,7 +57,7 @@ const LandingPage = () => {
               {
                   data?.slice(0,5).map((video : any , index : any)  => {
                     return (
-                        <MovieCard key={index} video={video}/>
+                        <MovieCard key={index} noOfVideos={data.length} video={video}/>
                     )
                 })
               }

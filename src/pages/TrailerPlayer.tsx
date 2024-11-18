@@ -94,7 +94,7 @@ const TrailerPlayer = () => {
           </div>
           <div className="flex w-full gap-5">
             {
-              data[2].result.slice(0,5).map((video:video | any, index)  => {
+              data[2].result.slice(0,5).map((video:video | any, index:number)  => {
                   return (
                       <MovieCard key={index} video={video}/>
                   )

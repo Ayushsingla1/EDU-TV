@@ -1,22 +1,21 @@
-import { X , Upload} from "lucide-react"
+import { X, Upload } from "lucide-react"
 
-const FileUploadField = ({ label, onChange, preview, onRemove, accept, type }) => {
+const FileUploadField = ({ label, onChange, preview, onRemove, accept, type }: any) => {
     console.log(label)
     return (
         <div className="flex flex-col gap-y-2 w-80">
             <label className="text-white">{label}</label>
             <div className="relative">
-                {/* File Input Area */}
                 <div className="relative border-2 border-dashed border-gray-400 rounded-lg p-4 
                                hover:border-[#1EFF00] transition-colors group">
-                    <input 
-                        type="file" 
+                    <input
+                        type="file"
                         onChange={onChange}
                         accept={accept}
                         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                     />
                     <div className="flex flex-col items-center gap-y-2">
-                        <Upload className="w-8 h-8 text-gray-400 group-hover:text-[#1EFF00] transition-colors"/>
+                        <Upload className="w-8 h-8 text-gray-400 group-hover:text-[#1EFF00] transition-colors" />
                         <p className="text-sm text-gray-400 text-center">
                             {preview ? 'Change file' : 'Click to upload or drag and drop'}
                         </p>

@@ -1,5 +1,5 @@
-export const contractAddress = "0x26737d9A1aBA6511F0Cff8848d17D0dA8fAC19ab"
-export const ABI =[
+export const contractAddress = "0xb74AA189958CE990D982bd97a79A4B0c7A781982"
+export const ABI = [
 	{
 		"inputs": [
 			{
@@ -547,6 +547,19 @@ export const ABI =[
 	},
 	{
 		"inputs": [],
+		"name": "checkAdmin",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "getAllPosters",
 		"outputs": [
 			{
@@ -1015,6 +1028,30 @@ export const ABI =[
 	{
 		"inputs": [
 			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "movieIndex",
+				"type": "uint256"
+			}
+		],
+		"name": "ownsMovie",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "bytes4",
 				"name": "interfaceId",
 				"type": "bytes4"
@@ -1064,5 +1101,3 @@ export const ABI =[
 		"type": "function"
 	}
 ]
-
-

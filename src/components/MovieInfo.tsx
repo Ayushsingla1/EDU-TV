@@ -19,7 +19,6 @@ const MovieInfo: React.FC<MovieInfoProps> = ({
 }) => {
   return (
     <div className="flex flex-col md:flex-row p-6 w-10/12 max-w-[1440px] rounded-lg shadow-lg">
-      {/* Poster Image */}
       <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
         <img
           src={posterUrl}
@@ -27,8 +26,7 @@ const MovieInfo: React.FC<MovieInfoProps> = ({
           className="w-full h-auto max-w-[240px] border-2 border-green-500 rounded-lg"
         />
       </div>
-
-      {/* Movie Details */}
+      
       <div className="flex flex-col text-white">
         <h2 className="text-2xl font-bold mb-4 text-green-500">
           About the Movie

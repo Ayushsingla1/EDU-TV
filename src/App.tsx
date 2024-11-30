@@ -14,12 +14,12 @@ function App() {
     <div className="min-h-screen w-full bg-[#3b3b3b]">
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/home" element={<Home/>}/>
-        <Route path="/player" element={<Player />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/player/:id" element={<Player />} />
         <Route path="/trailerPlayer/:id" element={<TrailerPlayer />} />
         <Route path="/payment/:id" element={<Payment />} />
-        <Route path="/AdminHome" element={<AdminHome/>}/>
-        <Route path = "/addmovie" element = {<MovieUpload/>}/>
+        <Route path="/AdminHome" element={<AdminHome />} />
+        <Route path="/addmovie" element={<MovieUpload />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

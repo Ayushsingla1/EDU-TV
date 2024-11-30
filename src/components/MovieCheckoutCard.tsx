@@ -1,5 +1,5 @@
 import React from "react";
-import { contractAddress , ABI } from "@/utils/contractDetails";
+import { contractAddress, ABI } from "@/utils/contractDetails";
 import { useWriteContract } from "wagmi";
 import { useWaitForTransactionReceipt } from "wagmi";
 
@@ -9,7 +9,7 @@ type MovieCheckoutProps = {
   owner: string;
   description: string;
   buyers: number;
-  id : number
+  id: number
 };
 
 
@@ -22,29 +22,32 @@ const MovieCheckout: React.FC<MovieCheckoutProps> = ({
   id
 }) => {
   const { writeContract, isPending, data: hash } = useWriteContract();
-  const { isSuccess, isError } = useWaitForTransactionReceipt({
+  const { isSuccess, isError, error } = useWaitForTransactionReceipt({
     hash
   });
-  
-  const handleBuy = async (e : any) => {
-      e.preventDefault();
-      await writeContract({
-        abi: ABI,
-        address: contractAddress,
-        functionName: "purchaseMovie",
-        args: [id],
-        value: 250n,
-      });
-    };
 
 
-  if(isSuccess){
+  const handleBuy = async (e: any) => {
+    e.preventDefault();
+    const res = await writeContract({
+      abi: ABI,
+      address: contractAddress,
+      functionName: "purchaseMovie",
+      args: [id],
+      value: 40000n,
+    });
+    console.log(res)
+    console.log(error)
+  };
+
+
+  if (isSuccess) {
     return <div>Payment Successfull siuuuu</div>
   }
-  if(isError) {
+  if (isError) {
     return <div>ERROR...</div>
   }
-  if(isPending){
+  if (isPending) {
     return <div>payment in progress ....</div>
   }
   return (
@@ -62,7 +65,7 @@ const MovieCheckout: React.FC<MovieCheckoutProps> = ({
         <p>
           <span className="text-white blackStroke text-3xl">DESCRIPTION:</span>
           <br />
-          <span className="blackStroke text-lg font-bold">{description.trim().slice(0,300)}</span>
+          <span className="blackStroke text-lg font-bold">{description.trim().slice(0, 300)}</span>
         </p>
 
         <p className="text-3xl">

@@ -23,6 +23,12 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+      '@typescript-eslint/no-explicit-any': 'off', // Disable error for using `any`
+      '@typescript-eslint/no-unused-vars': [
+        'warn', // Warn instead of error for unused variables
+        { argsIgnorePattern: '^_' }, // Ignore variables prefixed with _
+      ],
+      '@typescript-eslint/explicit-function-return-type': 'off', // Disable requiring return types
     },
   },
 )

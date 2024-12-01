@@ -49,7 +49,7 @@ const Payment = () => {
               <MovieCheckout
                 title={data === undefined || id === undefined ? ("") : (data[parseInt(id)].name)}
                 gas={parseInt(data[id].price)}
-                owner="0x567a927827f8b8fd47513e31a54820d56bcd"
+                owner="0xb8B0C320ED4b7F9Fda8A2408F4C4044Bc5C8Bf41"
                 description={data === undefined || id === undefined ? ("") : data[parseInt(id)].description}
                 buyers={1230000}
                 id={id === undefined ? (0) : (parseInt(id))}

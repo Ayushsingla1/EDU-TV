@@ -15,7 +15,8 @@ const Player = () => {
 
   const { address } = useAccount();
   const navigate = useNavigate();
-  const { id } = useParams();
+  let { id } = useParams();
+
 
   const [decryptedVideoUrl, setDecryptedVideoUrl] = useState<string | null>(null);
   const [status, setStatus] = useState<string>("");
@@ -28,13 +29,13 @@ const Player = () => {
       {
         abi: ABI,
         address: contractAddress,
-        args: [0],
+        args: [id],
         functionName: "getMovie"
       },
       {
         abi: ABI,
         address: contractAddress,
-        args: [0],
+        args: [id],
         functionName: "getPoster"
       },
       {
@@ -147,7 +148,7 @@ const Player = () => {
             <div className="w-full justify-center items-center flex bottom-[0] font-hanalei">
               <MovieInfo
                 title={data[1].result.name}
-                owner="0x567a027b2f96b8fbd47c133e13a5482d565b6dc6"
+                owner="0xb8B0C320ED4b7F9Fda8A2408F4C4044Bc5C8Bf41"
                 amount={data[1].result.price.toString()}
                 imdbRating="8.8/10"
                 description={data[1].result.description}

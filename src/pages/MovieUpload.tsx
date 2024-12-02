@@ -2,10 +2,13 @@ import Navbar from "@/components/Navbar"
 import { useState } from "react"
 import FileUploadField from "./FileUploadField";
 import axios from "axios";
-import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
-import { ABI, contractAddress } from "@/utils/contractDetails";
+import { useWriteContract, useWaitForTransactionReceipt, useAccount } from "wagmi";
+// import { ABI, contractAddress } from "@/utils/contractDetails";
 import * as cryptojs from 'crypto-js';
 import { LoaderCircle, CheckCircle2, XCircle } from 'lucide-react';
+import { useEthersSigner } from "@/utils/providerChange";
+import { Contract } from "ethers";
+import { contractAbi, contractAddress } from "@/utils/NeoXContractDetails";
 
 interface MovieDetails {
     movieName: string;
@@ -166,13 +169,15 @@ const MovieUpload = () => {
             setUploadProgress(prev => ({ ...prev, [type]: false }));
             throw new Error('Failed to upload file to IPFS');
         }
-    };
+    };  
+    const connectedAcc = useAccount();
+    const signer = useEthersSigner({chainId: connectedAcc.chainId})
 
     const submitHandler = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsUploading(true);
         setStatus('');
-
+        const contractSigned = new Contract(contractAddress, contractAbi, signer)
         try {
             if (!files.movie || !files.trailer || !files.poster) {
                 setStatus('Please upload all required files');
@@ -184,19 +189,13 @@ const MovieUpload = () => {
             const trailerHash = await uploadToPinata(files.trailer, 'trailer');
             const posterHash = await uploadToPinata(files.poster, 'poster');
 
-            await writeContract({
-                abi: ABI,
-                address: contractAddress,
-                functionName: "addMovie",
-                args: [
-                    details.movieName,
-                    details.movieDescription,
-                    details.price,
-                    movieHash.replace("ipfs://", ""),
-                    trailerHash.replace("ipfs://", ""),
-                    posterHash.replace("ipfs://", "")
-                ],
-            });
+            await contractSigned.addMovie(details.movieName,
+                                            details.movieDescription,
+                                            details.price,
+                                            movieHash.replace("ipfs://", ""),
+                                            trailerHash.replace("ipfs://", ""),
+                                            posterHash.replace("ipfs://", "")
+                                        )
         } catch (error) {
             console.error('Upload error:', error);
             setStatus('Failed to upload movie');

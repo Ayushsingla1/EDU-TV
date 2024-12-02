@@ -4,9 +4,10 @@ import MovieInfo from "../components/MovieInfo";
 import { video } from "@/DummyData/videosData";
 import MovieCard from "@/components/MovieCard";
 import { useReadContracts } from "wagmi";
-import { ABI, contractAddress } from "@/utils/contractDetails";
+// import { ABI, contractAddress } from "@/utils/contractDetails";
 import { useParams } from "react-router-dom";
 import "../utils/loader.css"
+import { contractAbi, contractAddress } from "@/utils/NeoXContractDetails";
 
 const TrailerPlayer = () => {
   const { id } = useParams();
@@ -14,19 +15,19 @@ const TrailerPlayer = () => {
   const { data, isPending, error } = useReadContracts({
     contracts: [
       {
-        abi: ABI,
+        abi: contractAbi,
         address: contractAddress,
         args: [id],
         functionName: "getTrailer",
       },
       {
-        abi: ABI,
+        abi: contractAbi,
         address: contractAddress,
         args: [id],
         functionName: "getPoster",
       },
       {
-        abi: ABI,
+        abi: contractAbi,
         address: contractAddress,
         functionName: "getAllPosters",
         args: [],
@@ -61,12 +62,13 @@ const TrailerPlayer = () => {
               <Video link={`https://maroon-fashionable-warbler-188.mypinata.cloud/ipfs/${data[0].result.replace("ipfs://", "")}?pinataGatewayToken=gVQfpvbN3IXW52kARQuLO50y78ginsP31oSkPQT78K23fingxRmnt7u0tHk2lnFk`} />
               <div className="w-full justify-center items-center flex bottom-[0] font-hanalei">
                 <MovieInfo
-                  title={dummyVid.name}
+                  title={data[1].result.name}
                   owner="0x567a027b2f96b8fbd47c133e13a5482d565b6dc6"
                   amount={data[1].result.price.toString()}
                   imdbRating="8.8/10"
                   description={data[1].result.description}
                   posterUrl={`https://maroon-fashionable-warbler-188.mypinata.cloud/ipfs/${data[1].result.ipfsHash.replace("ipfs://", "")}?pinataGatewayToken=gVQfpvbN3IXW52kARQuLO50y78ginsP31oSkPQT78K23fingxRmnt7u0tHk2lnFk`}
+                  id = {id}
                 />
               </div>
             </div>

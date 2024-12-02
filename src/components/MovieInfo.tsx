@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 interface MovieInfoProps {
   title: string;
@@ -7,6 +8,7 @@ interface MovieInfoProps {
   imdbRating: string;
   description: string;
   posterUrl: string;
+  id : string
 }
 
 const MovieInfo: React.FC<MovieInfoProps> = ({
@@ -16,7 +18,10 @@ const MovieInfo: React.FC<MovieInfoProps> = ({
   imdbRating,
   description,
   posterUrl,
+  id
 }) => {
+  console.log(id)
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col md:flex-row p-6 w-10/12 max-w-[1440px] rounded-lg shadow-lg">
       <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
@@ -52,6 +57,7 @@ const MovieInfo: React.FC<MovieInfoProps> = ({
           <span className="font-bold text-green-500">Description:</span>
           <p className="text-white leading-snug">{description}</p>
         </div>
+        <div className="mt-5"><button onClick={() => navigate(`/player/${id}`)} className="text-white bg-green-500 py-2 px-2 rounded-md">Watch Now</button></div>
       </div>
     </div>
   );

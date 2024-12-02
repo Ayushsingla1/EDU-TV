@@ -2,32 +2,51 @@ import Footer from "@/components/Footer";
 import MovieCard from "@/components/MovieCard";
 import Navbar from "@/components/Navbar";
 import image from "../assets/Group 1.png";
-import { useReadContract } from "wagmi";
-import { ABI, contractAddress } from "@/utils/contractDetails"
+import { useAccount, useReadContract } from "wagmi";
+// import { ABI, contractAddress } from "@/utils/contractDetails"
 import "../utils/loader.css"
+import { contractAbi, contractAddress } from "@/utils/NeoXContractDetails";
+import { useEthersSigner } from "@/utils/providerChange";
+import { useEffect, useState } from "react";
+import { Contract } from "ethers";
 
 const LandingPage = () => {
-  console.log(ABI);
-  console.log(contractAddress);
+  // console.log(ABI);
+  // console.log(contractAddress);
 
-  const { data, isPending, error }: { data: any[] | undefined, isPending: any, error: any } = useReadContract({
-    abi: ABI,
-    address: contractAddress,
-    functionName: "getAllPosters",
-    args: [],
-  })
 
-  console.log(data);
+  const [allPosters, setAllPosters] = useState<any>()
 
-  if (isPending) {
-    return <div className="flex w-screen h-screen justify-center items-center">
-      <div className="loader"></div>
-    </div>
-  }
-  if (error) {
-    return <div>{error}...</div>
-  }
-  else {
+  const connectedAcc = useAccount()
+  
+  const signer = useEthersSigner({chainId: connectedAcc.chainId})
+
+  useEffect(() => {
+    const contractSigned = new Contract(contractAddress, contractAbi, signer);
+    if(contractSigned && signer){
+      contractSigned.getAllPosters().then((posters) => {setAllPosters(posters); console.log(posters)})
+    }
+  }, [signer])
+
+  // console.log("hello")
+  // const { data, isPending, error }: { data: any[] | undefined, isPending: any, error: any } = useReadContract({
+  //   abi: contractAbi,
+  //   address: contractAddress,
+  //   functionName: "getAllPosters",
+  //   args: [],
+  // })
+
+  // console.log(data);
+
+  // if (isPending) {
+  //   return <div className="flex w-screen h-screen justify-center items-center">
+  //     <div className="loader"></div>
+  //   </div>
+  // }
+  // if (error) {
+  //   return <div>{error}...</div>
+  // }
+  // else {
     return (
       <div className="w-full flex flex-col">
         <Navbar />
@@ -58,7 +77,7 @@ const LandingPage = () => {
             </div>
             <div className="flex w-full gap-5 mt-5">
               {
-                data?.map((video: any, index: any) => {
+                allPosters?.map((video: any, index: any) => {
                   return (
                     <MovieCard key={index} video={video} />
                   )
@@ -70,7 +89,7 @@ const LandingPage = () => {
         <Footer />
       </div>
     );
-  }
+  // }
 }
 
 export default LandingPage;

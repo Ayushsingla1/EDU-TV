@@ -189,13 +189,19 @@ const MovieUpload = () => {
             const trailerHash = await uploadToPinata(files.trailer, 'trailer');
             const posterHash = await uploadToPinata(files.poster, 'poster');
 
-            await contractSigned.addMovie(details.movieName,
-                                            details.movieDescription,
-                                            details.price,
-                                            movieHash.replace("ipfs://", ""),
-                                            trailerHash.replace("ipfs://", ""),
-                                            posterHash.replace("ipfs://", "")
-                                        )
+            await writeContract({
+                abi: contractAbi,
+                address: contractAddress,
+                functionName: "addMovie",
+                args: [
+                    details.movieName,
+                    details.movieDescription,
+                    details.price,
+                    movieHash.replace("ipfs://", ""),
+                    trailerHash.replace("ipfs://", ""),
+                    posterHash.replace("ipfs://", "")
+                ],
+            });
         } catch (error) {
             console.error('Upload error:', error);
             setStatus('Failed to upload movie');

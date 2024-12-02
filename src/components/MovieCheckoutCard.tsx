@@ -1,5 +1,6 @@
 import React from "react";
-import { contractAddress, ABI } from "@/utils/contractDetails";
+// import { contractAddress, ABI } from "@/utils/contractDetails";
+import { contractAddress, contractAbi} from "@/utils/NeoXContractDetails";
 import { useWriteContract } from "wagmi";
 import { useWaitForTransactionReceipt } from "wagmi";
 
@@ -30,7 +31,7 @@ const MovieCheckout: React.FC<MovieCheckoutProps> = ({
   const handleBuy = async (e: any) => {
     e.preventDefault();
     const res = await writeContract({
-      abi: ABI,
+      abi: contractAbi,
       address: contractAddress,
       functionName: "purchaseMovie",
       args: [id],

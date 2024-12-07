@@ -2,10 +2,10 @@ import Footer from "@/components/Footer";
 import MovieCard from "@/components/MovieCard";
 import Navbar from "@/components/Navbar";
 import image from "../assets/Group 1.png";
-// import { ABI, contractAddress } from "@/utils/contractDetails";
+import { ABI, contractAddress } from "@/utils/contractDetails";
 import { useReadContract } from "wagmi";
 import "../utils/loader.css"
-import { contractAbi, contractAddress } from "@/utils/NeoXContractDetails";
+// import { contractAbi, contractAddress } from "@/utils/NeoXContractDetails";
 // import { useEffect, useState } from "react";
 // import { useEthersSigner } from "@/utils/providerChange";
 // import { Contract } from "ethers";
@@ -14,9 +14,7 @@ const LandingPage = () => {
 
 
   const { data, isPending, error }: { data: any[] | undefined, isPending: any, error: any } = useReadContract({
-    // abi: ABI,
-    // address: contractAddress,
-    abi: contractAbi,
+    abi: ABI,
     address: contractAddress,
     functionName: "getAllPosters",
     args: [],
@@ -80,7 +78,7 @@ const LandingPage = () => {
                 MORE
               </button>
             </div>
-            <div className="flex w-full gap-5 mt-5">
+            <div className="grid grid-cols-5 w-full gap-5 mt-5">
               {
                 data?.map((video: any, index:any) => {
                   return (

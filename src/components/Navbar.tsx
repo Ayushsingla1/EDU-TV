@@ -46,14 +46,14 @@ const Navbar = () => {
 
   // if (!isPending) {
     return (
-      <div className="flex justify-between font-hanalei bg-[#3B3B3B] text-white p-8 ">
+      <div className="flex flex-wrap justify-between font-hanalei bg-[#3B3B3B] text-white p-8 ">
         <div className="text-4xl text-[#1ff000]">
           {
             isAdmin === true ? (<Link to="/home">Web3TV</Link>) : (<Link to="/">Web3TV</Link>)
             // <Link to="/">Web3TV</Link>
           }
         </div>
-        <div className="flex gap-5 px-5 items-center text-xl">
+        <div className="flex gap-5 flex-wrap px-5 items-center text-xl">
           <ul className="flex gap-10 px-10">
             <Link to='/home'><li>Home</li></Link>
             {

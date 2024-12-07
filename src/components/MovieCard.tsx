@@ -8,7 +8,7 @@ const MovieCard = ({ video }: any) => {
     <div className="hover:scale-105 image-container transition-all ease-in-out w-full">
       <img
         src={`https://maroon-fashionable-warbler-188.mypinata.cloud/ipfs/${video.ipfsHash.replace("ipfs://", "")}?pinataGatewayToken=gVQfpvbN3IXW52kARQuLO50y78ginsP31oSkPQT78K23fingxRmnt7u0tHk2lnFk`}
-        className='w-full transition-all ease-in-out h-[321px] object-cover rounded-lg'
+        className='w-full transition-all ease-in-out sm:h-[321px] h-[490px] object-cover rounded-lg'
         alt=""
       />
       <div className="hover-text w-full">

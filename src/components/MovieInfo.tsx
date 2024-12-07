@@ -42,7 +42,7 @@ const MovieInfo: React.FC<MovieInfoProps> = ({
         </div>
 
         <div className="mb-2">
-          <span className="font-bold text-green-500">Owner:</span> {owner}
+          <span className="font-bold text-green-500">Owner:</span> {owner.slice(0,4) + "....." + owner.slice(-4)}
         </div>
 
         <div className="mb-2">

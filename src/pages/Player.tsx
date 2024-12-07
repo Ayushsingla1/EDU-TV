@@ -124,17 +124,16 @@ const Player = () => {
     <div className="w-full h-full pb-10">
       <Navbar />
       <div className="flex flex-col gap-y-12 justify-center items-center">
-        <div className="flex flex-col w-full relative items-center bg-[#292929] h-[140vh]">
+        <div className="flex flex-col w-full relative items-center bg-[#292929] md:min-h-[1200px] sm:min-h-[1300px] min-h-[1200px] lg:min-h-[1400px] h-[140vh]">
           <img src={`https://maroon-fashionable-warbler-188.mypinata.cloud/ipfs/${data[1].result.ipfsHash.replace("ipfs://", "")}?pinataGatewayToken=gVQfpvbN3IXW52kARQuLO50y78ginsP31oSkPQT78K23fingxRmnt7u0tHk2lnFk`} className="w-full absolute blur-3xl h-[90vh]" alt="Background Blur" />
           <div className="flex pt-10 gap-y-6 flex-col absolute top-0 w-full justify-center items-center">
             <div className="flex gap-x-2 text-white justify-center items-center">
-              <span className="font-hanalei text-4xl">{data[1].result.name}</span>
+              <span className="font-hanalei md:text-4xl sm:text-2xl text-xl">{data[1].result.name}</span>
               <div className="border border-[#1EFF00] rounded-full px-3 py-1">
-                <span className="font-hanalei text-xl">Owner:</span>
-                <span className="font-hanalei text-xl">0xb8B0C320ED4b7F9Fda8A2408F4C4044Bc5C8Bf41</span>
+                <span className="font-hanalei sm:text-xl text-md">Owner:</span>
+                <span className="font-hanalei sm:text-xl text-md">0xb8B0C320ED4b7F9Fda8A2408F4C4044Bc5C8Bf41</span>
               </div>
             </div>
-            <div>
               {decryptedVideoUrl ? (
                 <Video link={decryptedVideoUrl} />
               ) : (
@@ -142,10 +141,8 @@ const Player = () => {
                   {status || "Decryting Secure Video"}
                 </div>
               )}
-              {status && <p className="text-white mt-2">{status}</p>}
-              {error && <p className="text-red-500 mt-2">{error}</p>}
-            </div>
-
+              {/* {status && <p className="text-white mt-2">{status}</p>}
+              {error && <p className="text-red-500 mt-2">{error}</p>} */}
             <div className="w-full justify-center items-center flex bottom-[0] font-hanalei">
               <MovieInfo
                 title={data[1].result.name}
@@ -162,7 +159,7 @@ const Player = () => {
           <div className="flex justify-between text-xl">
             <h2 className="font-hanalei text-3xl text-[#1EFF00]">Movies to Rent</h2>
           </div>
-          <div className="flex w-full gap-5">
+          <div className="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 w-full gap-5">
             {
               data[2].result.map((video: video | any, index: number) => {
                 return (

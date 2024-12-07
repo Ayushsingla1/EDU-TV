@@ -2,10 +2,10 @@ import MovieCheckout from "../components/MovieCheckoutCard";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useAccount, useReadContract } from "wagmi";
-// import { contractAddress, ABI } from "@/utils/contractDetails";
+import { contractAddress, ABI } from "@/utils/contractDetails";
 import { useParams } from "react-router-dom";
 import "../utils/loader.css"
-import { contractAbi, contractAddress } from "@/utils/NeoXContractDetails";
+// import { contractAbi, contractAddress } from "@/utils/NeoXContractDetails";
 interface posterData {
   movieId: number,
   name: string;
@@ -22,7 +22,7 @@ const Payment = () => {
   console.log(address)
 
   const { data, isPending }: { data: posterData[] | undefined, isPending: boolean | undefined, isError: any } = useReadContract({
-    abi: contractAbi,
+    abi: ABI,
     address: contractAddress,
     functionName: "getAllPosters",
     args: []

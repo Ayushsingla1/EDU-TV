@@ -4,10 +4,10 @@ import MovieInfo from "../components/MovieInfo";
 import { video } from "@/DummyData/videosData";
 import MovieCard from "@/components/MovieCard";
 import { useReadContracts } from "wagmi";
-// import { ABI, contractAddress } from "@/utils/contractDetails";
+import { ABI, contractAddress } from "@/utils/contractDetails";
 import { useParams } from "react-router-dom";
 import "../utils/loader.css"
-import { contractAbi, contractAddress } from "@/utils/NeoXContractDetails";
+// import { contractAbi, contractAddress } from "@/utils/NeoXContractDetails";
 
 const TrailerPlayer = () => {
   const { id } = useParams();
@@ -15,19 +15,19 @@ const TrailerPlayer = () => {
   const { data, isPending, error } = useReadContracts({
     contracts: [
       {
-        abi: contractAbi,
+        abi: ABI,
         address: contractAddress,
         args: [id],
         functionName: "getTrailer",
       },
       {
-        abi: contractAbi,
+        abi: ABI,
         address: contractAddress,
         args: [id],
         functionName: "getPoster",
       },
       {
-        abi: contractAbi,
+        abi: ABI,
         address: contractAddress,
         functionName: "getAllPosters",
         args: [],

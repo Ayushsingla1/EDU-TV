@@ -3,12 +3,12 @@ import { useState } from "react"
 import FileUploadField from "./FileUploadField";
 import axios from "axios";
 import { useWriteContract, useWaitForTransactionReceipt, useAccount } from "wagmi";
-// import { ABI, contractAddress } from "@/utils/contractDetails";
+import { ABI, contractAddress } from "@/utils/contractDetails";
 import * as cryptojs from 'crypto-js';
 import { LoaderCircle, CheckCircle2, XCircle } from 'lucide-react';
 import { useEthersSigner } from "@/utils/providerChange";
-import { Contract } from "ethers";
-import { contractAbi, contractAddress } from "@/utils/NeoXContractDetails";
+// import { Contract } from "ethers";
+// import { contractAbi, contractAddress } from "@/utils/NeoXContractDetails";
 
 interface MovieDetails {
     movieName: string;
@@ -177,7 +177,6 @@ const MovieUpload = () => {
         e.preventDefault();
         setIsUploading(true);
         setStatus('');
-        const contractSigned = new Contract(contractAddress, contractAbi, signer)
         try {
             if (!files.movie || !files.trailer || !files.poster) {
                 setStatus('Please upload all required files');
@@ -190,7 +189,7 @@ const MovieUpload = () => {
             const posterHash = await uploadToPinata(files.poster, 'poster');
 
             await writeContract({
-                abi: contractAbi,
+                abi: ABI,
                 address: contractAddress,
                 functionName: "addMovie",
                 args: [

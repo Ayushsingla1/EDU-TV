@@ -4,13 +4,13 @@ import Navbar from "@/components/Navbar";
 import image from "../assets/Group 1.png";
 import { useAccount, useReadContract } from "wagmi";
 import { video } from "@/DummyData/videosData";
-// import { ABI, contractAddress } from "@/utils/contractDetails";
+import { ABI, contractAddress } from "@/utils/contractDetails";
 import { useNavigate } from "react-router-dom";
 import "../utils/loader.css"
-import { useEthersSigner } from "@/utils/providerChange";
-import { useEffect, useState } from "react";
-import { Contract } from "ethers";
-import { contractAbi, contractAddress } from "@/utils/NeoXContractDetails";
+// import { useEthersSigner } from "@/utils/providerChange";
+// import { useEffect, useState } from "react";
+// import { Contract } from "ethers";
+// import { contractAbi, contractAddress } from "@/utils/NeoXContractDetails";
 
 interface posterData {
   movieId: number,
@@ -25,30 +25,30 @@ const AdminHome = () => {
   const connectedAcc = useAccount();
   const navigate = useNavigate();
 
-  const [allPosters, setAllPosters] = useState<any>()
+  // const [allPosters, setAllPosters] = useState<any>()
 
   
-  const signer = useEthersSigner({chainId: connectedAcc.chainId})
+  // const signer = useEthersSigner({chainId: connectedAcc.chainId})
 
-  useEffect(() => {
-    const contractSigned = new Contract(contractAddress, contractAbi, signer);
-    if(contractSigned && signer){
-      contractSigned.getAllPosters().then((posters) => {setAllPosters(posters); console.log(posters)})
-    }
-  }, [signer])
-  // const { data, isPending }: { data: posterData[] | undefined, isPending: boolean | undefined } = useReadContract({
-  //   abi: ABI,
-  //   address: contractAddress,
-  //   functionName: "getAllPosters",
-  //   args: []
-  // })
+  // useEffect(() => {
+  //   const contractSigned = new Contract(contractAddress, contractAbi, signer);
+  //   if(contractSigned && signer){
+  //     contractSigned.getAllPosters().then((posters) => {setAllPosters(posters); console.log(posters)})
+  //   }
+  // }, [signer])
+  const { data, isPending }: { data: posterData[] | undefined, isPending: boolean | undefined } = useReadContract({
+    abi: ABI,
+    address: contractAddress,
+    functionName: "getAllPosters",
+    args: []
+  })
 
-  // if (isPending) {
-  //   return <div className="flex w-screen h-screen justify-center items-center">
-  //     <div className="loader"></div>
-  //   </div>
-  // }
-  // else {
+  if (isPending) {
+    return <div className="flex w-screen h-screen justify-center items-center">
+      <div className="loader"></div>
+    </div>
+  }
+  else {
     return (
       <div className="w-full flex flex-col">
         <Navbar />
@@ -91,7 +91,7 @@ const AdminHome = () => {
         <Footer />
       </div>
     );
-  // }
+  }
 }
 
 export default AdminHome;

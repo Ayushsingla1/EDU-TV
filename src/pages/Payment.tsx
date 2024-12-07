@@ -6,6 +6,7 @@ import { useAccount, useReadContract } from "wagmi";
 import { useParams } from "react-router-dom";
 import "../utils/loader.css"
 import { contractAbi, contractAddress } from "@/utils/NeoXContractDetails";
+
 interface posterData {
   movieId: number,
   name: string;

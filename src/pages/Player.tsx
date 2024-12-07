@@ -4,11 +4,12 @@ import MovieInfo from "../components/MovieInfo";
 import { video } from "@/DummyData/videosData";
 import MovieCard from "@/components/MovieCard";
 import { useAccount, useReadContracts } from "wagmi";
-import { ABI, contractAddress } from "@/utils/contractDetails";
+// import { ABI, contractAddress } from "@/utils/contractDetails";
 import * as cryptojs from 'crypto-js';
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { contractAbi, contractAddress } from "@/utils/NeoXContractDetails";
 import "../utils/loader.css"
 
 const Player = () => {
@@ -27,25 +28,25 @@ const Player = () => {
   const { data, isPending, isError } = useReadContracts({
     contracts: [
       {
-        abi: ABI,
+        abi: contractAbi,
         address: contractAddress,
         args: [id],
         functionName: "getMovie"
       },
       {
-        abi: ABI,
+        abi: contractAbi,
         address: contractAddress,
         args: [id],
         functionName: "getPoster"
       },
       {
-        abi: ABI,
+        abi: contractAbi,
         address: contractAddress,
         functionName: "getAllPosters",
         args: [],
       },
       {
-        abi: ABI,
+        abi: contractAbi,
         address: contractAddress,
         functionName: "ownsMovie",
         args: [address, id]

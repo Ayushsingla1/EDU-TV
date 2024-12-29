@@ -1,6 +1,6 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Link } from "react-router-dom";
-import { useAccount, useReadContract } from "wagmi";
+import { useAccount } from "wagmi";
 // import { ABI, contractAddress } from "@/utils/contractDetails";
 import { contractAbi, contractAddress } from "@/utils/NeoXContractDetails";
 import { useEffect, useState } from "react";

@@ -91,16 +91,16 @@ const Player = () => {
   };
 
   if (!isPending) {
-    if (data[3].result === false) {
+    if ((data as any[])[3].result === false) {
       navigate(`/payment/${id}`)
     }
   }
 
   useEffect(() => {
 
-    if (!isPending && !decryptedVideoUrl && data && data[0]?.result?.ipfsHash) {
+    if (!isPending && !decryptedVideoUrl && data && (data as any[])[0]?.result?.ipfsHash) {
       console.log("user movies is : ", data[3])
-      const ipfsHash = data[0].result.ipfsHash;
+      const ipfsHash = (data as any[])[0].result.ipfsHash;
 
       decryptAndFetchFile(ipfsHash, password);
     }
@@ -125,10 +125,10 @@ const Player = () => {
       <Navbar />
       <div className="flex flex-col gap-y-12 justify-center items-center">
         <div className="flex flex-col w-full relative items-center bg-[#292929] md:min-h-[1200px] sm:min-h-[1300px] min-h-[1200px] lg:min-h-[1400px] h-[140vh]">
-          <img src={`https://maroon-fashionable-warbler-188.mypinata.cloud/ipfs/${data[1].result.ipfsHash.replace("ipfs://", "")}?pinataGatewayToken=gVQfpvbN3IXW52kARQuLO50y78ginsP31oSkPQT78K23fingxRmnt7u0tHk2lnFk`} className="w-full absolute blur-3xl h-[90vh]" alt="Background Blur" />
+          <img src={`https://black-rapid-ladybug-825.mypinata.cloud/ipfs/${(data as any[])[1].result.ipfsHash.replace("ipfs://", "")}`} className="w-full absolute blur-3xl h-[90vh]" alt="Background Blur" />
           <div className="flex pt-10 gap-y-6 flex-col absolute top-0 w-full justify-center items-center">
             <div className="flex gap-x-2 text-white justify-center items-center">
-              <span className="font-hanalei md:text-4xl sm:text-2xl text-xl">{data[1].result.name}</span>
+              <span className="font-hanalei md:text-4xl sm:text-2xl text-xl">{(data as any[])[1].result.name}</span>
               <div className="border border-[#1EFF00] rounded-full px-3 py-1">
                 <span className="font-hanalei sm:text-xl text-md">Owner:</span>
                 <span className="font-hanalei sm:text-xl text-md">0xb8B0C320ED4b7F9Fda8A2408F4C4044Bc5C8Bf41</span>
@@ -145,12 +145,13 @@ const Player = () => {
               {error && <p className="text-red-500 mt-2">{error}</p>} */}
             <div className="w-full justify-center items-center flex bottom-[0] font-hanalei">
               <MovieInfo
-                title={data[1].result.name}
-                owner="0xb8B0C320ED4b7F9Fda8A2408F4C4044Bc5C8Bf41"
-                amount={data[1].result.price.toString()}
+                title={(data as any[])[1].result.name}
+                owner="0x5D8c93Ccf0C1FEB3b93B6b5D3d4eFFe08c2aF3f2"
+                amount={(data as any[])[1].result.price.toString()}
                 imdbRating="8.8/10"
-                description={data[1].result.description}
-                posterUrl={`https://maroon-fashionable-warbler-188.mypinata.cloud/ipfs/${data[1].result.ipfsHash.replace("ipfs://", "")}?pinataGatewayToken=gVQfpvbN3IXW52kARQuLO50y78ginsP31oSkPQT78K23fingxRmnt7u0tHk2lnFk`}
+                description={(data as any[])[1].result.description}
+                posterUrl={`https://black-rapid-ladybug-825.mypinata.cloud/ipfs/${(data as any[])[1].result.ipfsHash.replace("ipfs://", "")}`}
+                id={`${id}`}
               />
             </div>
           </div>
@@ -161,7 +162,7 @@ const Player = () => {
           </div>
           <div className="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 w-full gap-5">
             {
-              data[2].result.map((video: video | any, index: number) => {
+              (data as any[])[2].result.map((video: video | any, index: number) => {
                 return (
                   <MovieCard key={index} video={video} />
                 )

@@ -2,7 +2,7 @@ import Footer from "@/components/Footer";
 import MovieCard from "@/components/MovieCard";
 import Navbar from "@/components/Navbar";
 import image from "../assets/Group 1.png";
-import { useAccount, useReadContract } from "wagmi";
+import { useAccount } from "wagmi";
 import { video } from "@/DummyData/videosData";
 // import { ABI, contractAddress } from "@/utils/contractDetails";
 import { useNavigate } from "react-router-dom";
@@ -12,13 +12,13 @@ import { useEffect, useState } from "react";
 import { Contract } from "ethers";
 import { contractAbi, contractAddress } from "@/utils/NeoXContractDetails";
 
-interface posterData {
-  movieId: number,
-  name: string;
-  description: string;
-  ipfsHash: string;
-  price: number;
-}
+// interface posterData {
+//   movieId: number,
+//   name: string;
+//   description: string;
+//   ipfsHash: string;
+//   price: number;
+// }
 
 const AdminHome = () => {
 

@@ -3,11 +3,7 @@ import {
   getDefaultConfig,
   RainbowKitProvider,
 } from '@rainbow-me/rainbowkit';
-import { WagmiProvider } from 'wagmi';
-import {
-  lineaTestnet,
-  lineaSepolia
-} from 'wagmi/chains';
+import { WagmiProvider } from 'wagmi'
 import {
   QueryClientProvider,
   QueryClient,
@@ -20,7 +16,7 @@ import React from 'react';
 const config = getDefaultConfig({
   appName: 'NeoX',
   projectId: '121',
-  chains: [lineaTestnet , lineaSepolia, NeoX],
+  chains: [NeoX],
   ssr: false,
 });
 

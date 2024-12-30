@@ -36,19 +36,7 @@ const AdminHome = () => {
       contractSigned.getAllPosters().then((posters) => {setAllPosters(posters); console.log(posters)})
     }
   }, [signer])
-  // const { data, isPending }: { data: posterData[] | undefined, isPending: boolean | undefined } = useReadContract({
-  //   abi: ABI,
-  //   address: contractAddress,
-  //   functionName: "getAllPosters",
-  //   args: []
-  // })
 
-  // if (isPending) {
-  //   return <div className="flex w-screen h-screen justify-center items-center">
-  //     <div className="loader"></div>
-  //   </div>
-  // }
-  // else {
     return (
       <div className="w-full flex flex-col">
         <Navbar />
@@ -77,7 +65,7 @@ const AdminHome = () => {
                 MORE
               </button>
             </div>
-            <div className="flex w-full gap-5 mt-5">
+            <div className="grid grid-cols-5 w-full gap-5 mt-5">
               {
                 allPosters?.map((video: video | any, index: number) => {
                   return (

@@ -7,10 +7,6 @@ import { video } from "@/DummyData/videosData";
 import { ABI, contractAddress } from "@/utils/contractDetails";
 import { useNavigate } from "react-router-dom";
 import "../utils/loader.css"
-// import { useEthersSigner } from "@/utils/providerChange";
-// import { useEffect, useState } from "react";
-// import { Contract } from "ethers";
-// import { contractAbi, contractAddress } from "@/utils/NeoXContractDetails";
 
 interface posterData {
   movieId: number,
@@ -22,20 +18,9 @@ interface posterData {
 
 const AdminHome = () => {
 
-  const connectedAcc = useAccount();
+  const connectAccount = useAccount();
   const navigate = useNavigate();
 
-  // const [allPosters, setAllPosters] = useState<any>()
-
-  
-  // const signer = useEthersSigner({chainId: connectedAcc.chainId})
-
-  // useEffect(() => {
-  //   const contractSigned = new Contract(contractAddress, contractAbi, signer);
-  //   if(contractSigned && signer){
-  //     contractSigned.getAllPosters().then((posters) => {setAllPosters(posters); console.log(posters)})
-  //   }
-  // }, [signer])
   const { data, isPending }: { data: posterData[] | undefined, isPending: boolean | undefined } = useReadContract({
     abi: ABI,
     address: contractAddress,
@@ -57,7 +42,7 @@ const AdminHome = () => {
             <img className="w-full max-w-[1840px] h-[59vh]" src={image} alt="" />
             <div className="absolute bottom-[-20px] z-20 flex-col flex gap-y-1 left-[50%] translate-x-[-50%]">
               <h1 className="font-hanalei text-6xl flex justify-center items-center gap-x-3 text-white">
-                WELCOME <span className="text-[#1ff000] text-3xl">{connectedAcc.address?.slice(0, 7) + "...." + connectedAcc.address?.slice(-7)}</span>
+                WELCOME <span className="text-[#1ff000] text-3xl">{connectAccount.address?.slice(0, 7) + "...." + connectAccount.address?.slice(-7)}</span>
               </h1>
               <p className="text-white happy-monkey-regular text-2xl">
                 Upload a video?
@@ -79,7 +64,7 @@ const AdminHome = () => {
             </div>
             <div className="flex w-full gap-5 mt-5">
               {
-                allPosters?.map((video: video | any, index: number) => {
+                data?.map((video: video | any, index: number) => {
                   return (
                     <MovieCard key={index} video={video} />
                   )

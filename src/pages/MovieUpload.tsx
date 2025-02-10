@@ -6,9 +6,7 @@ import { useWriteContract, useWaitForTransactionReceipt, useAccount } from "wagm
 import { ABI, contractAddress } from "@/utils/contractDetails";
 import * as cryptojs from 'crypto-js';
 import { LoaderCircle, CheckCircle2, XCircle } from 'lucide-react';
-import { useEthersSigner } from "@/utils/providerChange";
-// import { Contract } from "ethers";
-// import { contractAbi, contractAddress } from "@/utils/NeoXContractDetails";
+import { useNavigate } from "react-router-dom";
 
 interface MovieDetails {
     movieName: string;
@@ -18,6 +16,8 @@ interface MovieDetails {
     releaseDate: string;
     genre: string;
 }
+
+console.log(contractAddress)
 
 interface FileState {
     movie: File | null;
@@ -40,6 +40,8 @@ interface UploadProgress {
 
 
 const MovieUpload = () => {
+
+    const navigate = useNavigate();
     const [details, setDetails] = useState<MovieDetails>({
         movieName: "",
         movieDescription: "",
@@ -48,6 +50,8 @@ const MovieUpload = () => {
         releaseDate: "",
         genre: ""
     });
+
+    const {address} = useAccount();
 
     const [status, setStatus] = useState<string>("");
     const [, setEncryptedFile] = useState<Blob | null>(null);
@@ -169,14 +173,13 @@ const MovieUpload = () => {
             setUploadProgress(prev => ({ ...prev, [type]: false }));
             throw new Error('Failed to upload file to IPFS');
         }
-    };  
-    const connectedAcc = useAccount();
-    const signer = useEthersSigner({chainId: connectedAcc.chainId})
+    };
 
     const submitHandler = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsUploading(true);
         setStatus('');
+
         try {
             if (!files.movie || !files.trailer || !files.poster) {
                 setStatus('Please upload all required files');
@@ -188,7 +191,8 @@ const MovieUpload = () => {
             const trailerHash = await uploadToPinata(files.trailer, 'trailer');
             const posterHash = await uploadToPinata(files.poster, 'poster');
 
-            await writeContract({
+            console.log(movieHash,trailerHash,posterHash)
+            const res = await writeContract({
                 abi: ABI,
                 address: contractAddress,
                 functionName: "addMovie",
@@ -200,7 +204,10 @@ const MovieUpload = () => {
                     trailerHash.replace("ipfs://", ""),
                     posterHash.replace("ipfs://", "")
                 ],
+                account : address
             });
+            console.log(res);
+            console.log("done transaction")
         } catch (error) {
             console.error('Upload error:', error);
             setStatus('Failed to upload movie');
@@ -238,6 +245,7 @@ const MovieUpload = () => {
         <div className="flex flex-col items-center justify-center h-screen text-red-500">
             <XCircle className="w-16 h-16 mb-4" />
             <p>Error while uploading</p>
+            <div><button onClick={() => navigate('/home')}>Home</button></div>
         </div>
     );
 
@@ -245,6 +253,7 @@ const MovieUpload = () => {
         <div className="flex flex-col items-center justify-center h-screen text-green-500">
             <CheckCircle2 className="w-16 h-16 mb-4" />
             <p>Uploaded Successfully</p>
+            <div><button onClick={() => navigate('/home')}>Home</button></div>
         </div>
     );
 
@@ -296,7 +305,7 @@ const MovieUpload = () => {
                         </div>
                         <FileUploadField
                             label="Upload Movie"
-                            onChange={(e) => changeFileHandler(e, 'movie')}
+                            onChange={(e : any) => changeFileHandler(e, 'movie')}
                             preview={previews.movie}
                             onRemove={() => removeFile('movie')}
                             accept="video/*"
@@ -332,7 +341,7 @@ const MovieUpload = () => {
                         </div>
                         <FileUploadField
                             label="Upload Trailer"
-                            onChange={(e) => changeFileHandler(e, 'trailer')}
+                            onChange={(e : any) => changeFileHandler(e, 'trailer')}
                             preview={previews.trailer}
                             onRemove={() => removeFile('trailer')}
                             accept="video/*"
@@ -368,7 +377,7 @@ const MovieUpload = () => {
                         </div>
                         <FileUploadField
                             label="Movie Poster"
-                            onChange={(e) => changeFileHandler(e, 'poster')}
+                            onChange={(e : any) => changeFileHandler(e, 'poster')}
                             preview={previews.poster}
                             onRemove={() => removeFile('poster')}
                             accept="image/*"

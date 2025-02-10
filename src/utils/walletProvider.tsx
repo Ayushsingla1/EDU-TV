@@ -5,22 +5,34 @@ import {
 } from '@rainbow-me/rainbowkit';
 import { WagmiProvider } from 'wagmi';
 import {
-  lineaTestnet,
-  lineaSepolia
-} from 'wagmi/chains';
-import {
   QueryClientProvider,
   QueryClient,
 } from "@tanstack/react-query";
-import { NeoX } from './ChainConfig';
 import { darkTheme } from '@rainbow-me/rainbowkit';
 import React from 'react';
+import { Chain } from 'viem/chains';
 
+export const EduChain: Chain = {
+  id: 656476,
+  name: "Open Campus Codex",
+  nativeCurrency: {
+    decimals: 18,
+    name: "Open Campus Codex",
+    symbol: "EDU",
+  },
+  rpcUrls: {
+    default: { http: ["https://rpc.open-campus-codex.gelato.digital"] },
+  },
+  blockExplorers: {
+    default: { name: "OpenCampus", url: "https://opencampus-codex.blockscout.com/" },
+  },
+  testnet: true,
+};
 
 const config = getDefaultConfig({
-  appName: 'NeoX',
-  projectId: '121',
-  chains: [lineaTestnet , lineaSepolia, NeoX],
+  appName: 'ARB',
+  projectId: '1',
+  chains: [EduChain],
   ssr: false,
 });
 

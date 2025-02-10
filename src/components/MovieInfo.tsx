@@ -8,7 +8,7 @@ interface MovieInfoProps {
   imdbRating: string;
   description: string;
   posterUrl: string;
-  id : string
+  id : string | undefined
 }
 
 const MovieInfo: React.FC<MovieInfoProps> = ({
@@ -46,7 +46,7 @@ const MovieInfo: React.FC<MovieInfoProps> = ({
         </div>
 
         <div className="mb-2">
-          <span className="font-bold text-green-500">Amount:</span> {amount}
+          <span className="font-bold text-green-500">Amount:</span> {amount} TLOS
         </div>
 
         <div className="mb-4">

@@ -5,10 +5,7 @@ import image from "../assets/Group 1.png";
 import { ABI, contractAddress } from "@/utils/contractDetails";
 import { useReadContract } from "wagmi";
 import "../utils/loader.css"
-// import { contractAbi, contractAddress } from "@/utils/NeoXContractDetails";
-// import { useEffect, useState } from "react";
-// import { useEthersSigner } from "@/utils/providerChange";
-// import { Contract } from "ethers";
+
 
 const LandingPage = () => {
 
@@ -20,19 +17,6 @@ const LandingPage = () => {
     args: [],
   })
 
-  // const [allPosters, setAllPosters] = useState<any>()
-
-  // const connectedAcc = useAccount()
-  
-  // const signer = useEthersSigner({chainId: connectedAcc.chainId})
-
-  // useEffect(() => {
-  //   const contractSigned = new Contract(contractAddress, contractAbi, signer);
-  //   if(contractSigned && signer){
-  //     contractSigned.getAllPosters().then((posters) => {setAllPosters(posters); console.log(posters)})
-  //   }
-  // }, [signer])
-
   console.log(data);
 
   if (isPending) {
@@ -40,10 +24,9 @@ const LandingPage = () => {
       <div className="loader"></div>
     </div>
   }
-  if (error) {
+  else if (error) {
     return <div>{error}...</div>
   }
-
   else {
     return (
       <div className="w-full flex flex-col">

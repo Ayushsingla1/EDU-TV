@@ -71,7 +71,7 @@ class DBPedia extends Component<DBPediaProps, DBPediaState> {
 
     axios
       .post(
-        'https://autonomous-backend.onrender.com/chatbot',
+        'http://localhost:8001/chatbot',
         {
           message: search,
           conversation: updatedHistory,

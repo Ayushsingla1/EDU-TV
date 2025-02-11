@@ -11,7 +11,7 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between  items-start gap-6 w-full">
           <div className="flex flex-col gap-2">
-            <h1 className="text-3xl font-hanalei text-[#1EFF00]">WEB3TV</h1>
+            <h1 className="text-3xl font-hanalei text-[#1EFF00]">EDU-TV</h1>
             <p className="text-gray-400 max-w-sm">
               Decentralizing entertainment, one screen at a time. Buy and own your favorite movies and shows on-chain.
             </p>
@@ -24,7 +24,7 @@ const Footer = () => {
         <div className="my-6 border-t border-gray-700"></div>
         <div className="flex flex-col md:flex-row justify-between items-center text-sm gap-4">
           <p className="text-gray-500">
-            © {new Date().getFullYear()} WEB3TV. All Rights Reserved.
+            © {new Date().getFullYear()} EDU-TV. All Rights Reserved.
           </p>
           <div className="flex gap-3">
             <a href="#" className="hover:text-[#1EFF00] transition">Terms of Service</a>

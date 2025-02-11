@@ -29,7 +29,7 @@ const Navbar = () => {
       <div className="flex justify-between font-hanalei bg-[#3B3B3B] text-white p-8 ">
         <div className="text-4xl text-[#1ff000]">
           {
-            data === true ? (<Link to="/home">Web3TV</Link>) : (<Link to="/">Web3TV</Link>)
+            data === true ? (<Link to="/home">EDU-TV</Link>) : (<Link to="/">EDU-TV</Link>)
           }
         </div>
         <div className="flex gap-5 px-5 items-center text-xl">

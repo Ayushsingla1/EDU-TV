@@ -47,7 +47,7 @@ const LandingPage = () => {
           <img className="w-full max-w-[1840px] h-[59vh]" src={image} alt="" />
           <div className="absolute bottom-[-20px] z-20 flex-col flex gap-y-1 left-[50%] translate-x-[-50%]">
             <h1 className="font-hanalei text-6xl flex justify-center items-center gap-x-3 text-white">
-              WELCOME TO <span className="text-[#1ff000]">WEB3TV</span>
+              WELCOME TO <span className="text-[#1ff000]">EDU-TV</span>
             </h1>
             <p className="text-white happy-monkey-regular text-2xl">
               Buy Movies and TV Shows in a decentralized way
